@@ -1,19 +1,21 @@
 package view;
 
-import javax.swing.JDialog;
-import javax.swing.JLabel;
-import java.awt.BorderLayout;
-import java.awt.Font;
-
-import javax.swing.SwingConstants;
 import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.Rectangle;
 import java.awt.Toolkit;
+
 import javax.swing.ImageIcon;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
 
 public class Sobre extends JDialog {
 	
 	public Sobre() {
+		setTitle("Sobre");
+		setBounds(new Rectangle(0, 0, 604, 364));
 		setResizable(false);
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setModal(true);
@@ -23,38 +25,38 @@ public class Sobre extends JDialog {
 		
 		JLabel titulo = new JLabel("Sobre o software");
 		titulo.setFont(new Font("Yu Gothic UI Semibold", Font.ITALIC, 14));
-		titulo.setBounds(0, 24, 623, 43);
+		titulo.setBounds(0, 24, 604, 43);
 		titulo.setHorizontalAlignment(SwingConstants.CENTER);
 		getContentPane().add(titulo);
 		
 		JLabel descricao1 = new JLabel("O software CoWorking trata-se de um protótipo cujo objetivo é");
 		descricao1.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 12));
 		descricao1.setHorizontalAlignment(SwingConstants.CENTER);
-		descricao1.setBounds(10, 80, 623, 43);
+		descricao1.setBounds(0, 80, 604, 43);
 		getContentPane().add(descricao1);
 		
 		JLabel descricao2 = new JLabel(" possibilitar o gerenciamento de reserva de salas em um espaço colaborativo.");
 		descricao2.setHorizontalAlignment(SwingConstants.CENTER);
 		descricao2.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 12));
-		descricao2.setBounds(0, 114, 623, 43);
+		descricao2.setBounds(0, 114, 604, 43);
 		getContentPane().add(descricao2);
 		
 		JLabel versao = new JLabel("Versão 1.0.0\r\n\r\n");
 		versao.setHorizontalAlignment(SwingConstants.CENTER);
 		versao.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD | Font.ITALIC, 12));
-		versao.setBounds(0, 190, 623, 32);
+		versao.setBounds(0, 190, 604, 32);
 		getContentPane().add(versao);
 		
 		JLabel atualizacao = new JLabel("Última atualização: 31/01/2024");
 		atualizacao.setHorizontalAlignment(SwingConstants.CENTER);
 		atualizacao.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 12));
-		atualizacao.setBounds(0, 225, 623, 32);
+		atualizacao.setBounds(0, 225, 604, 32);
 		getContentPane().add(atualizacao);
 		
 		JLabel imgMIT = new JLabel("");
 		imgMIT.setIcon(new ImageIcon(Sobre.class.getResource("/img/mitLicense.png")));
 		imgMIT.setHorizontalAlignment(SwingConstants.CENTER);
-		imgMIT.setBounds(504, 242, 80, 92);
+		imgMIT.setBounds(498, 233, 80, 92);
 		getContentPane().add(imgMIT);
 	}
 
