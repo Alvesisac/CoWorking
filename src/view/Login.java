@@ -8,10 +8,16 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import javax.swing.SwingConstants;
+
+import model.DAO;
+
 import javax.swing.JPasswordField;
 import java.awt.Rectangle;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.sql.Connection;
 import java.awt.event.ActionEvent;
 import java.awt.Cursor;
 import javax.swing.ImageIcon;
@@ -19,7 +25,16 @@ import javax.swing.ImageIcon;
 public class Login extends JDialog {
 	private JTextField inputLogin;
 	private JPasswordField inputSenha;
+	private JLabel imgDatabase;
 	public Login() {
+		
+		addWindowListener(new WindowAdapter(){
+			public void windowActivated(WindowEvent e) {
+				statusConexaoBanco();
+			}
+		});
+		
+		
 		setTitle("Login");
 		getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		setResizable(false);
@@ -55,6 +70,7 @@ public class Login extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
+		
 		btnLogin.setBounds(197, 248, 89, 23);
 		getContentPane().add(btnLogin);
 		
@@ -64,13 +80,45 @@ public class Login extends JDialog {
 		tituloLogin.setBounds(161, 28, 145, 38);
 		getContentPane().add(tituloLogin);
 		
-		JLabel imgDatabase = new JLabel("");
-		imgDatabase.setIcon(new ImageIcon(Login.class.getResource("/img/databaseOff.png")));
+		
+		imgDatabase = new JLabel("");
 		imgDatabase.setHorizontalAlignment(SwingConstants.CENTER);
-		imgDatabase.setBounds(0, 248, 78, 59);
+		imgDatabase.setIcon(new ImageIcon(Login.class.getResource("/img/databaseOff.png")));
+		imgDatabase.setBounds(25, 252, 46, 55);
 		getContentPane().add(imgDatabase);
 	}
+	
 
+	DAO dao = new DAO();
+	
+	
+	
+	private void statusConexaoBanco() {
+		
+		try {
+			Connection conexaoBanco = dao.conectar();
+			
+			if (conexaoBanco == null) {
+				imgDatabase.setIcon(new ImageIcon (Login.class.getResource("/img/databaseOff.png")));
+			}
+			
+			else {
+				//Trocar a imagem se houver conexão
+				imgDatabase.setIcon(new ImageIcon(Login.class.getResource("/img/databaseOn.png")));
+			}
+			conexaoBanco.close();
+			
+		}
+		
+		catch (Exception e) {
+			System.out.println(e);
+		}	
+		
+		
+	}
+	
+	
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
