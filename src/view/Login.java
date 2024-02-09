@@ -3,6 +3,7 @@ package view;
 import javax.swing.JDialog;
 import java.awt.Toolkit;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -123,6 +124,20 @@ public class Login extends JDialog {
 	private void logar() {
 		String read = "select * from funcionario where login=? and senha=md5(?)";
 
+		if (inputLogin.getText().isEmpty()) {
+			JOptionPane.showMessageDialog(null, "Login do usuário obrigatório!");
+			inputSenha.requestFocus();
+		}
+		
+		else if (inputSenha.getPassword().length == 0) {
+			JOptionPane.showMessageDialog(null, "Senha ou usuario obrigatória!");
+			inputSenha.requestFocus();
+		}
+		
+		
+		
+		else {
+		
 		try {
 
 			// Estabelecer a conexão
@@ -148,17 +163,25 @@ public class Login extends JDialog {
 				
 				Home home = new Home();
 				home.setVisible(true);
+				home.txtUsuarioLogado.setText("Usuário: " + resultadoExecucao.getString(2));
+				dispose();
 			}
 			
 			else {
-				Deuerrado nao = new Deuerrado();
-				nao.setVisible(true);
+				
+				JOptionPane.showMessageDialog(null,"Login e/ou senha invalido(s)!");
+				inputLogin.setText(null);
+				inputSenha.setText(null);
+				inputLogin.requestFocus();
 			}
+			
+			conexaoBanco.close();
 			
 		}
 
 		catch (Exception e) {
 			System.out.println(e);
+		}
 		}
 	}
 	
