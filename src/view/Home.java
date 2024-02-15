@@ -98,7 +98,7 @@ public class Home extends JDialog {
 		panelUsuario.add(txtUsuarioLogado);
 		
 		txtData = new JLabel("");
-		txtData.setBounds(277, 42, 197, 14);
+		txtData.setBounds(246, 42, 238, 14);
 		panelUsuario.add(txtData);
 		
 	
