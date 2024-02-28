@@ -42,7 +42,7 @@ public class Funcionarios extends JDialog {
 	private JPasswordField inputSenha;
 
 	public Funcionarios() {
-		setTitle("Salas");
+		setTitle("Funcionarios");
 		getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		getContentPane().setBackground(new Color(192, 192, 192));
 		getContentPane().setForeground(new Color(255, 255, 255));
